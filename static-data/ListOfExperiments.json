@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "name": "First-Fit"
+    },
+    {
+        "id": 2,
+        "name": "Best-Fit"
+    },
+    {
+        "id": 3,
+        "name": "Worst-Fit"
+    },
+    {
+        "id": 4,
+        "name": "Next-Fit"
+    }
+]

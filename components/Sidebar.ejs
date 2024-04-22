@@ -1,0 +1,103 @@
+<link rel="stylesheet" href="/css/Sidebar.css" type="text/css">
+<link rel="stylesheet" href="/css/global.css" type="text/css">
+<link rel="stylesheet" href="/css/Quiz.css">
+<div class="contact-tab-frame">
+    <div class="main-frame">
+        <div class="child-frame">
+            <div class="operating-system"><a href="/Simulations" class="no-decoration">Operating System</a> &gt; <%-
+                    sidebarData.Name %></div>
+        </div>
+        <div class="parent-text-frame" id="sidebar-frame">
+            <div class="ndhu-csie-junior-project">
+                <div class="os-frame">
+                    <div class="intro-obj-fed-frame">
+                        <div class='introduction1' id="intro" data-index="0">
+                            <p>Introduction</p>
+                        </div>
+                        <div class='introduction1' id="learningObjective" data-index="1">
+                            <p>Learning Objective</p>
+                        </div>
+                        <div class='introduction1' id="overview" data-index="2">
+                            <p>Overview</p>
+                        </div>
+                        <div class='introduction1' id="def" data-index="3">
+                            <p>Definitions</p>
+                        </div>
+                        <div class="objective-frame" id="Demo" data-index="4">
+                            <p>Demo</p>
+                        </div>
+                        <div class="objective" id="Pre-Test" data-index="5">
+                            <p>Pre-Test Quiz</p>
+                        </div>
+                        <div class="objective" id="Simulation" data-index="6">
+                            <p>Simulation</p>
+                        </div>
+                        <div class="feedback" id="Post-Test" data-index="6">
+                            <p>Post-Test Quiz</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="parent-frame">
+                    <div class="title"></div>
+                </div>
+            </div>
+            <div class="title-text">
+                <div class="korem-ipsum-dolor">
+                    <%- sidebarData.Intro %>
+                </div>
+                <div class="korem-ipsum-dolor">
+                    <%- sidebarData.learningObjective %>
+                </div>
+                <div class="korem-ipsum-dolor <%= sidebarData.overflow ? 'korem-overflow' : '' %>" >
+                    <%- sidebarData.overview %>
+                </div>
+                <div class="korem-ipsum-dolor">
+                    <%- sidebarData.def %>
+                </div>
+                <div class="korem-ipsum-dolor <%= sidebarData.overflow ? 'korem-overflow' : '' %>">
+                    <%- sidebarData.demo %>
+                </div>
+                <div class="korem-ipsum-dolor quiz-section" id="pre-quiz-content" data-index="5">
+                    <!-- Content for Pre-Test Quiz -->
+                    <div class="quiz-container"></div>
+                    <p id="test-warn">Take a quiz to test your knowledge before starting the course</p>
+                    <button id="start-btn" class="button">Start</button>
+                    <button id="submit-btn" class="button">Submit</button>
+                </div>
+
+                <div class="korem-ipsum-dolor">
+                    <%- sidebarData.simulation %>
+                </div>
+
+                <div class="korem-ipsum-dolor quiz-section" id="post-quiz-content" data-index="7">
+                    <!-- Content for Post-Test Quiz -->
+                    <div class="quiz-container2"></div>
+                    <p id="test-warn2">Take a quiz to test your knowledge after completing the course</p>
+                    <button id="start-btn2" class="button">Start</button>
+                    <button id="submit-btn2" class="button">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../static/Quiz.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        setupQuiz(
+            quizData,
+            document.querySelector("#pre-quiz-content .quiz-container"),
+            document.getElementById('start-btn'),
+            document.getElementById('submit-btn'),
+            document.getElementById('test-warn')
+        );
+
+        setupQuiz(
+            quizData2,
+            document.querySelector("#post-quiz-content .quiz-container2"),
+            document.getElementById('start-btn2'),
+            document.getElementById('submit-btn2'),
+            document.getElementById('test-warn2')
+        );
+    });
+</script>

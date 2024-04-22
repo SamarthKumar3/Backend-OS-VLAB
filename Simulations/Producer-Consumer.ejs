@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producer-consumer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/Producer.css">
+</head>
+
+<body>
+    <%- include('../components/Header.ejs') -%>
+        <%- include('../components/Sidebar.ejs', {sidebarData: { Name: "Producer-Consumer" ,
+            Intro: `The producer-consumer problem is a classic synchronisation problem that involves two types of concurrent processes: producers, which create data items, and consumers, which consume those items.`
+            , learningObjective: `<ul>
+            <li>Understand the producer-consumer problem and its relevance in concurrent programming.</li>
+            <li>Learn how to implement the producer-consumer model using semaphores for
+                synchronisation.</li>
+            <li>Explore the impact of varying parameters such as the number of chunks produced, and buffer
+                capacity on system behaviour.</li>
+            <li>Gain proficiency in designing and implementing simulations of concurrent systems.</li>
+            <li>Develop problem-solving skills related to synchronisation and resource management in
+                concurrent environments</li>
+            </ul>` ,
+            overview: `The challenge lies in ensuring that producers do not produce data too quickly for consumers to
+            consume, leading to resource wastage or system instability, and that consumers do not attempt to consume
+            data that has not yet been produced, leading to errors or deadlock.<br /><br /> One common solution to this
+            problem involves using semaphores, a synchronisation primitive that controls access to shared resources.
+            Semaphores can be thought of as counters with atomic operations for incrementing and decrementing. In the
+            context of the producer-consumer problem, semaphores are used to coordinate access to the buffer or queue
+            where data items are stored.`,
+            def:`<ul>
+                <li><strong>Producer:</strong> A process or thread responsible for generating data items and adding them
+                    to a shared buffer or queue. Producers typically run concurrently with consumers.</li>
+                <li><strong>Consumer:</strong> A process or thread responsible for consuming data items from the shared
+                    buffer or queue. Consumers typically run concurrently with producers.</li>
+                <li><strong>Buffer/Queue:</strong> A shared data structure used by producers to store data items before
+                    they are consumed by consumers. The buffer can be implemented using arrays, linked lists, or other
+                    data structures.</li>
+                <li><strong>Semaphore:</strong> A synchronisation primitive used to control access to shared resources.
+                    Semaphores typically have two operations: wait (0) and signal (1). The wait operation decrements the
+                    semaphore value and blocks if the value becomes negative, while the signal operation increments the
+                    semaphore value and unblocks any waiting processes if the value becomes non-negative</li>
+            </ul>`,
+            demo: `<div class="page-layout">
+                <div class="side-control">
+                    <div class="container">
+                        <div class="input-group">
+                            <input id="chunks-count" type="number" min="1" class="input" value="4" readonly>
+                            <label class="label">No. of Chunks</label>
+                        </div>
+                        <div class="input-group">
+                            <input id="queue-cap" type="number" min="1" max="6" class="input" value="4" readonly>
+                            <label class="label">Queue Capacity</label>
+                        </div>
+                        <button id="options-apply" class="btn">Apply</button>
+                    </div>
+                </div>
+                <div class="exp-vis">
+                    <div id="canvas-container">
+                        <canvas id="canvas"></canvas>
+                    </div>
+                </div>
+            </div>` ,preTestQuiz: "" ,
+            simulation: `<div class="page-layout">
+                <div class="side-control">
+                    <div class="container">
+                        <div class="input-group">
+                            <input id="chunks-count" type="number" min="1" class="input">
+                            <label class="label">No. of Chunks</label>
+                        </div>
+                        <div class="input-group">
+                            <input id="queue-cap" type="number" min="1" max="6" class="input">
+                            <label class="label">Queue Capacity</label>
+                        </div>
+                        <button id="options-apply" class="btn">Apply</button>
+                    </div>
+                </div>
+                <div class="exp-vis">
+                    <div id="canvas-container2">
+                        <canvas id="canvas2"></canvas>
+                    </div>
+                </div>
+            </div>`,
+            postTestQuiz: `` } }) -%>
+            <%- include('../components/Footer.ejs') -%>
+</body>
+
+<script>
+    const quizData = [
+        {
+            question: "What problem does the producer-consumer model aim to address?",
+            options: ["Deadlock", "Synchronization", "Sorting", "Encryption"],
+            answer: "Synchronization"
+        },
+        {
+            question: "Which synchronization primitive is commonly used to solve the producer-consumer problem?",
+            options: ["Binary search", "Heap", "Semaphore", "Graph"],
+            answer: "Semaphore"
+        },
+        {
+            question: "What role does the producer play in the producer-consumer model?",
+            options: ["Consuming data items", "Generating data items", "Sorting data items", "Encrypting data items"],
+            answer: "Generating data items"
+        },
+        {
+            question: "In the context of the producer-consumer model, what does the term 'buffer' refer to?",
+            options: ["A temporary storage space for data items", "A sorting algorithm", "A synchronisation primitive", "A cryptographic algorithm"],
+            answer: "A temporary storage space for data items"
+        },
+        {
+            question: "What is the purpose of using semaphores in the producer-consumer model?",
+            options: ["To encrypt data items", "To synchronise access to shared resources", "To sort data items", "To compress data items"],
+            answer: "To synchronise access to shared resources"
+        }
+    ];
+
+    const quizData2 = [
+        {
+            question: "What is one advantage of using the producer-consumer model?",
+            options: ["Increased resource contention", "Decreased system performance", "Concurrency", "Decreased code modularity"],
+            answer: "Concurrency"
+        },
+        {
+            question: "What issue can arise if synchronisation is not properly managed in a producer-consumer system?",
+            options: ["Increased throughput", "Deadlock", "Improved system stability", "Reduced resource utilisation"],
+            answer: "Deadlock"
+        },
+        {
+            question: "What does the wait operation of a semaphore do in the producer-consumer model?",
+            options: ["Increases the semaphore value", "Decreases the semaphore value", "Blocks until a condition is met", "Signals waiting processes to proceed"],
+            answer: "Blocks until a condition is met"
+        },
+        {
+            question: "How does the buffer capacity affect the behaviour of a producer-consumer system?",
+            options: ["It has no impact on system behaviour", "It determines the maximum number of data items that can be stored", "It decreases resource contention", "It increases system performance"],
+            answer: "It determines the maximum number of data items that can be stored"
+        },
+        {
+            question: "What role does mutual exclusion play in the producer-consumer model?",
+            options: ["It ensures that only one process can access a resource at a time", "It increases system throughput", "It decreases system stability", "It causes deadlock"],
+            answer: "It ensures that only one process can access a resource at a time"
+        }
+    ];
+</script>
+<script src="../static/Sidebar.js"></script>
+<script src="../static/Producer.js"></script>
+<script src="../static/Consumer.js"></script>
+
+</html>

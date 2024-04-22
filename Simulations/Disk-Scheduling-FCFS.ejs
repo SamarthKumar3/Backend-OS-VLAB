@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FCFS</title>
+    <link rel="stylesheet" href="/css/global.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+    <%- include('../components/Header.ejs') -%>
+        <%- include('../components/Sidebar.ejs', {sidebarData: { Name: "Disk Scheudling FCFS" , Intro: `FCFS
+            (First-Come, First-Served) is a simple disk scheduling algorithm used in operating systems to control and
+            optimize the access of disk storage. This algorithm works on the principle of serving the requests in the
+            order they arrive in the disk queue.` , learningObjective: `<ul>
+            In this experiment, we will be able to do the following:
+            <li>Understand the sequential serving principle of FCFS in disk scheduling.</li>
+            <li>Analyse and compute seek times while evaluating FCFS performance.</li>
+            <li>Compare FCFS efficiency with alternative disk scheduling algorithms.</li>
+            <li>Apply FCFS practically, simulate its behaviour, and assess its real-world relevance in operating
+                systems.</li>
+            </ul>` ,
+            overview: `<ul>
+                An overview of this experiment:
+                <li>Simulate disk access requests queued by arrival time.</li>
+                <li>Implement FCFS algorithm to prioritize and serve requests sequentially.</li>
+                <li>Analyse seek times and compare performance against other scheduling algorithms for evaluation.</li>
+            </ul>`,
+            def:`<ul>
+                <li><strong>Seek time:</strong> It is the time it takes for the disk arm to move to a specfic track to read/write data</li>
+                </ul>`,
+            preTestQuiz: "" , postTestQuiz: "",simulation: `<div class="labDescription">
+                <h3>Input Array Elements</h3>
+                <div class="input-container">
+                    <label>Enter the queue : </label>
+                    <input id="array" placeholder='Eg: "82 ,170 ,43 ,140 ,24 ,16 ,190"'
+                        oninput="validation(event)" /><br />
+                    <h6>0-199, no special character allowed except , </h6>
+                </div>
+
+                <div class="input-container">
+                    <label class="head">Enter head : </label>
+                    <input id="inputhead" oninput="validation(event)" /><br />
+                    <h6>0-199, no special character allowed except , </h6>
+                </div>
+
+                <div class="btn">
+                    <button type="button" name="button" onclick="gg()">
+                        Calculate
+                    </button>
+                </div>
+
+                <p id="vv"></p>
+
+                <br />
+                <div class="graph">
+                    <div id="myPlot" style="width: 100%; max-width: 700px"></div>
+                </div>
+            </div>` ,
+             } }) -%>
+
+
+            <%- include('../components/Footer.ejs') -%>
+                <script>
+                    const quizData = [
+                        {
+                            question: "Which of the following best describes FCFS scheduling in disk management?",
+                            options: ["Requests are served in ascending order of track numbers", "Requests are served in descending order of track numbers", "Requests are served based on priority assigned to each track", "Requests are served based on the shortest seek time"],
+                            answer: "Requests are served in ascending order of track numbers"
+                        },
+                        {
+                            question: "In FCFS disk scheduling, if the disk arm is at track 100 and the pending requests are at tracks 98, 37, 122, and 14, what will be the order of service?",
+                            options: ["98, 37, 122, 14", "37, 98, 14, 122", "98, 122, 14, 37", "122, 14, 37, 98"],
+                            answer: "98, 37, 122, 14"
+                        },
+                        {
+                            question: "What is the main disadvantage of FCFS disk scheduling?",
+                            options: ["Causes high seek time", "Prioritizes smaller requests", "Ensures fairness in accessing tracks", "Reduces disk throughput"],
+                            answer: "Causes high seek time"
+                        },
+                        {
+                            question: "In FCFS disk scheduling, if the disk arm is initially at track 50 and the requests are at tracks 90, 120, 35, and 100, what will be the total seek distance covered?",
+                            options: ["155 tracks", "90 tracks", "220 tracks", "135 tracks"],
+                            answer: "220 tracks"
+                        },
+                        {
+                            question: "Which statement about FCFS disk scheduling is true?",
+                            options: ["It always results in the shortest access time.", "It may cause high variance in response time.", "It always guarantees the lowest seek time.", "It's primarily designed for minimizing rotational latency."],
+                            answer: "It may cause high variance in response time."
+                        }
+                    ];
+                    const quizData2 = [
+                        {
+                            question: "In FCFS disk scheduling, if the disk arm is initially at track 50 and the pending requests are at tracks 98, 37, 122, and 14, what will be the total seek distance covered?",
+                            options: ["221 tracks", "134 tracks", "220 tracks", "155 tracks"],
+                            answer: "220 tracks"
+                        },
+                        {
+                            question: "Which scenario results in the shortest seek time using FCFS scheduling?",
+                            options: ["Requests at tracks 30, 25, 20, 15, 10, and 5", "Requests at tracks 0, 20, 40, 60, 80, and 100", "Requests at tracks 50, 60, 70, 80, 90, and 100", "Requests at tracks 100, 95, 90, 85, 80, and 75"],
+                            answer: "Requests at tracks 0, 20, 40, 60, 80, and 100"
+                        },
+                        {
+                            question: "What is the main drawback of FCFS scheduling in disk management?",
+                            options: ["May result in starvation of high-priority requests", "Causes excessive head movement", "Always has higher seek time compared to other algorithms", "Doesn’t consider the distance to be travelled"],
+                            answer: "Causes excessive head movement"
+                        },
+                        {
+                            question: "In FCFS scheduling, if the disk arm is initially at track 30 and the pending requests are at tracks 10, 90, 20, and 100, what will be the order of service?",
+                            options: ["10, 90, 20, 100", "90, 20, 10, 100", "10, 20, 90, 100", "20, 10, 90, 100"],
+                            answer: "10, 20, 90, 100"
+                        },
+                        {
+                            question: "Which characteristic defines FCFS scheduling for disk access?",
+                            options: ["Ensures the shortest service time", "Utilizes a priority queue mechanism", "Provides fairness to all tracks equally", "Serves requests based on their arrival order"],
+                            answer: "Serves requests based on their arrival order"
+                        }
+                    ];
+
+                </script>
+                <script src="../static/Sidebar.js"></script>
+                <script src="../static/FCFS.js"></script>
+</body>
+
+</html>

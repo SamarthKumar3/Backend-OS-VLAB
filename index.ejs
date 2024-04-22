@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SRMIST VRLabs</title>
+    <meta name="description"
+        content="A virtual lab to demonstrate the producer-consumer design pattern using semaphores. Built using HTMLCanvas.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+
+<body>
+    <%- include('./components/Header.ejs') -%>
+
+    <div class="heroSection">
+        <img src="" alt="Lab Picture" />
+    </div>
+    <div class="labDescription">
+        <h2>About Our Virtual Lab</h2>
+        <p>Good lab facilities and updated lab experiments are critical for any engineering college. Paucity of lab
+            facilities often make it difficult to conduct experiments. Also, good teachers are always a scarce resource.
+            The Virtual Labs project addresses this issue of lack of good lab facilities, as well as trained teachers,
+            by providing remote-access to simulation-based Labs in various disciplines of science and engineering. Yet
+            another objective is to arouse the curiosity of the students and permit them to learn at their own pace.
+            This student-centric approach facilitates the absorption of basic and advanced concepts through
+            simulation-based experimentation. Internet-based experimentation further permits use of additional
+            web-resources, video-lectures, animated demonstrations and self-evaluation. Specifically, the Virtual Labs
+            project addresses the following: </p>
+        <div class="bullet">
+            <ul>
+                <li>Access to online labs to those engineering colleges that lack these lab facilities</li>
+                <li>Access to online labs as a complementary facility to those colleges that already have labs</li>
+                <li>Training and skill-set augmentation through workshops and on-site/ online training</li>
+            </ul>
+        </div>
+        <p>Virtual labs are any place, any pace, any-time, any-type labs. It is a paradigm shift in student-centric,
+            online education.</p>
+    </div>
+
+    <div class="labDescription">
+        <h2>Labs</h2>
+        <div class="buttons">
+            <div class="myButton">
+                <p>Operating System</p>
+            </div>
+            <!-- <div class="myButton">
+                <p>AR/VR</p>
+            </div> -->
+        </div>
+        <div class="cards">
+            <!-- <img class="card" src="assets\operating-system-t.jpg" alt="" /> -->
+            <a href='/Simulations' class="no-decoration card"><img class="card" src="https://placehold.co/600x200" alt="" /></a></div>
+            
+        </div>
+    </div>
+    <%- include('./components/Footer.ejs', { sticky: false }) -%>
+</body>

@@ -1,0 +1,261 @@
+.operating-system {
+    position: relative;
+    font-weight: 600;
+}
+
+.child-frame {
+    width: 30.063rem;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0 var(--padding-xl);
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+.intro-obj-fed-frame div {
+    cursor: pointer;
+}
+
+.selected-frame {
+    color: var(--color-slateblue);
+}
+
+p {
+    margin: 0;
+}
+
+.experiment-list {
+    padding: 1rem;
+}
+
+.experiment-list a {
+    text-decoration: none !important;
+    color: var(--color-gray-300);
+}
+
+.experiment-list a:hover {
+    color: var(--color-slateblue);
+}
+
+.introduction1,
+.list-of-experiments,
+.objective {
+    position: relative;
+    font-weight: 600;
+}
+
+.objective-frame {
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0 0 var(--padding-6xs);
+}
+
+.feedback {
+    position: relative;
+    font-weight: 600;
+}
+
+.intro-obj-fed-frame {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 3rem 0;
+}
+
+.os-frame,
+.title {
+    box-sizing: border-box;
+}
+
+.os-frame {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0 0 var(--padding-xs);
+    min-width: 11.875rem;
+}
+
+.title {
+    width: 0.063rem;
+    height: 50vh;
+    position: relative;
+    border-right: 1px solid var(--color-gray-200);
+}
+
+.parent-frame {
+    height: 20.688rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.ndhu-csie-junior-project {
+    width: 30%;
+    background-color: var(--color-white);
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: var(--padding-xs) var(--padding-14xl) 0 var(--padding-80xl);
+    box-sizing: border-box;
+    gap: 0 2.875rem;
+    min-width: 25%;
+    max-width: 100%;
+}
+
+.korem-ipsum-dolor {
+    align-self: stretch;
+    /* height: 16.813rem; */
+    
+    line-height: 1.2;
+    position: relative;
+    font-weight: 500;
+    display: none;
+}
+
+.korem-overflow{
+    overflow-y: scroll;
+    height: 50vh;
+}
+
+#intro:focus p,
+#Pre-Test:focus,
+#Demo:focus,
+#Post-Test:focus,
+#learningObjective:focus,
+#overview:focus {
+    color: var(--color-slateblue) !important;
+}
+
+.title-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0 0 var(--padding-9xs);
+    box-sizing: border-box;
+    min-width: 40.25rem;
+    max-width: 100%;
+    font-size: var(--font-size-17xl);
+    color: var(--color-gray-300);
+}
+
+.parent-text-frame {
+    min-height: 100vh;
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    row-gap: 20px;
+    max-width: 100%;
+}
+
+.contact-tab-frame,
+.main-frame {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    max-width: 100%;
+}
+
+.main-frame {
+    width: 92.625rem;
+    padding: 0 var(--padding-xl) 0 0;
+    box-sizing: border-box;
+    gap: 1.375rem 0;
+}
+
+.contact-tab-frame {
+    /* position: absolute;
+    top: 0;
+    left: 0; */
+    padding: 2rem;
+    gap: 3rem 0;
+    width: 100%;
+    text-align: left;
+    font-size: var(--font-size-13xl);
+    color: var(--color-black);
+    font-family: var(--font-plus-jakarta-sans);
+}
+
+@media screen and (max-width: 1200px) {
+    .ndhu-csie-junior-project {
+        flex: 1;
+    }
+
+    .parent-text-frame {
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+
+    .feedback,
+    .introduction1,
+    .list-of-experiments,
+    .objective,
+    .operating-system {
+        font-size: var(--font-size-7xl);
+    }
+
+    .korem-ipsum-dolor {
+        font-size: var(--font-size-10xl);
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .ndhu-csie-junior-project {
+        gap: 0 2.875rem;
+        padding-left: var(--padding-30xl);
+        box-sizing: border-box;
+        min-width: 100%;
+    }
+
+    .title-text {
+        min-width: 100%;
+    }
+
+    .contact-tab-frame {
+        gap: 3rem 0;
+    }
+}
+
+@media screen and (max-width: 450px) {
+
+    .feedback,
+    .introduction1,
+    .list-of-experiments,
+    .objective,
+    .operating-system {
+        font-size: var(--font-size-lgi);
+    }
+
+    .intro-obj-fed-frame {
+        gap: 2.188rem 0;
+    }
+
+    .ndhu-csie-junior-project {
+        flex-wrap: wrap;
+    }
+
+    .korem-ipsum-dolor {
+        font-size: var(--font-size-3xl);
+    }
+}

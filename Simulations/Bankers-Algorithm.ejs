@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banker's Algorithm</title>
+    <link rel="stylesheet" href="/css/Bankers.css">
+</head>
+
+<body>
+    <%- include('../components/Header.ejs') -%>
+        <%- include('../components/Sidebar.ejs', {sidebarData: { Name: `Banker's Algorithm`, Intro: `Banker's Algorithm
+            is a method to ensure that resource allocation does not lead to deadlocks. It simulates resource allocation
+            for maximum possible resource usage and checks if it's safe to proceed. The algorithm prevents deadlocks by
+            ensuring that resources are only allocated when it's safe to do so. It helps determine a safe sequence of
+            resource allocation to avoid deadlocks.`, learningObjective: `<ul>
+            <li>The Banker's Algorithm is a technique for managing resources and preventing deadlocks in operating
+                systems.</li>
+            <li>The goal of the Banker’s algorithm is to handle all requests without entering into the unsafe state,
+                also called a deadlock.</li>
+            <li>It involves how an operating system assigns resources to processes</li>
+            <li>Its ability to ensure safety and detect deadlocks</li>
+            <li>It’s called the Banker’s algorithm because it could be used in the banking system so that banks never
+                run out of resources and always stay in a safe state.</li>
+            </ul>` ,
+            overview: `The Banker’s algorithm is a combination of two algorithms namely, Safety Algorithm and Resource
+            Request Algorithm. These two algorithms together control the processes and avoid dead lock in a system.
+            The Banker's algorithm is an algorithm for managing resources (like memory or CPU time) in a computer system
+            to prevent deadlocks. </br></br>
+            A deadlock is a situation where processes cannot progress because each process is
+            waiting for a resource that another process is holding. The Banker's algorithm works by dividing the
+            resources into resource types (such as memory and CPU time) and assigning a maximum number of units
+            available to each type. It then assigns resources to processes as they request them, while keeping track of
+            how many units of each type each process is holding. If a process requests a resource that is not available,
+            the Banker's algorithm checks if the remaining resources are sufficient to satisfy all of the process's
+            requests. If they are, the resource is allocated to the process. </br></br>
+            Otherwise, the process is placed in a waiting state until the requested resource becomes available. By
+            carefully managing the allocation of
+            resources, the Banker's algorithm helps to prevent deadlocks and ensures that the system remains in a safe
+            state, where no process will be permanently stuck waiting for resources.
+            `,
+            def:`<ul>
+                <li><strong>Available Resources Array:</strong> This array keeps track of the amount of each type of
+                    resource that is currently available in the system. </li>
+                <li><strong>Maximum Need Matrix:</strong> This matrix captures the maximum amount of resources of each
+                    type that each process can possibly request.</li>
+                <li><strong>Allocation Matrix:</strong> This matrix records the amount of resources of each type that
+                    each process currently holds. </li>
+                <li><strong>Need Matrix:</strong> This matrix is computed by subtracting the Allocation Matrix from the
+                    Maximum Need Matrix, indicating the amount of resources still needed by each process. </li>
+                <li><strong>Completed Processes Set:</strong>This set maintains a list of process IDs for processes that
+                    have completed their execution and released their resources.</li>
+            </ul>`,
+            preTestQuiz: `` , demo: `
+            <div class="container">
+                <div class="row p-2 pt-5">
+                    <!-- total Instance Form starts -->
+                    <div class="col-4 text-center">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">No of Instances of Resource A</span>
+
+                            </div>
+                            <input type="text" size="2" maxlength="2" class="form-control" id="resourceA" required>
+
+                        </div>
+                    </div>
+
+                    <div class="col-4 text-center">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">No of Instances of Resource B</span>
+                            </div>
+                            <input type="text" size="2" maxlength="2" class="form-control" id="resourceB" required>
+                        </div>
+                    </div>
+                    <div class="col-4 text-center">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">No of Instances of Resource C</span>
+                            </div>
+                            <input type="text" size="2" maxlength="2" class="form-control" id="resourceC" required>
+                        </div>
+                    </div>
+                    <!-- Total Instance Form Ends -->
+                </div>
+            </div>
+
+
+            <div class="container pt-5">
+                <div class="row">
+                    <!-- Allocation Form starts -->
+                    <div class="col-3 text-center">
+                        <table class="text-center">
+                            <thead>
+                                <tr>
+                                    <th colspan="4">
+                                        <h4>Allocation</h4>
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td>A</td>
+                                    <td>B</td>
+                                    <td>C</td>
+                                </tr>
+                                <tr>
+                                    <td>P1</td>
+                                    <td><input size="2" maxlength="2" id="a11"></td>
+                                    <td><input size="2" maxlength="2" id="a12"></td>
+                                    <td><input size="2" maxlength="2" id="a13"></td>
+                                </tr>
+                                <tr>
+                                    <td>P2</td>
+                                    <td><input size="2" maxlength="2" id="a21"></td>
+                                    <td><input size="2" maxlength="2" id="a22"></td>
+                                    <td><input size="2" maxlength="2" id="a23"></td>
+                                </tr>
+                                <tr>
+                                    <td>P3</td>
+                                    <td><input size="2" maxlength="2" id="a31"></td>
+                                    <td><input size="2" maxlength="2" id="a32"></td>
+                                    <td><input size="2" maxlength="2" id="a33"></td>
+                                </tr>
+                                <tr>
+                                    <td>P4</td>
+                                    <td><input size="2" maxlength="2" id="a41"></td>
+                                    <td><input size="2" maxlength="2" id="a42"></td>
+                                    <td><input size="2" maxlength="2" id="a43"></td>
+                                </tr>
+                                <tr>
+                                    <td>P5</td>
+                                    <td><input size="2" maxlength="2" id="a51"></td>
+                                    <td><input size="2" maxlength="2" id="a52"></td>
+                                    <td><input size="2" maxlength="2" id="a53"></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Allocation Form Ends -->
+
+
+                    <!-- Max Form Starts -->
+                    <div class="col-3 text-center">
+                        <table class="text-center">
+                            <thead>
+                                <tr>
+                                    <th colspan="4">
+                                        <h4>Maximum</h4>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td>A</td>
+                                    <td>B</td>
+                                    <td>C</td>
+                                </tr>
+                                <tr>
+                                    <td>P1</td>
+                                    <td><input size="2" maxlength="2" id="m11"></td>
+                                    <td><input size="2" maxlength="2" id="m12"></td>
+                                    <td><input size="2" maxlength="2" id="m13"></td>
+                                </tr>
+                                <tr>
+                                    <td>P2</td>
+                                    <td><input size="2" maxlength="2" id="m21"></td>
+                                    <td><input size="2" maxlength="2" id="m22"></td>
+                                    <td><input size="2" maxlength="2" id="m23"></td>
+                                </tr>
+                                <tr>
+                                    <td>P3</td>
+                                    <td><input size="2" maxlength="2" id="m31"></td>
+                                    <td><input size="2" maxlength="2" id="m32"></td>
+                                    <td><input size="2" maxlength="2" id="m33"></td>
+                                </tr>
+                                <tr>
+                                    <td>P4</td>
+                                    <td><input size="2" maxlength="2" id="m41"></td>
+                                    <td><input size="2" maxlength="2" id="m42"></td>
+                                    <td><input size="2" maxlength="2" id="m43"></td>
+                                </tr>
+                                <tr>
+                                    <td>P5</td>
+                                    <td><input size="2" maxlength="2" id="m51"></td>
+                                    <td><input size="2" maxlength="2" id="m52"></td>
+                                    <td><input size="2" maxlength="2" id="m53"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- MAx Form ends -->
+
+                    <!-- Need Form Starts -->
+                    <div class="col-3 text-center">
+                        <table class="text-center">
+                            <thead>
+                                <tr>
+                                    <th colspan="4">
+                                        <h4>Need</h4>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td>A</td>
+                                    <td>B</td>
+                                    <td>C</td>
+                                </tr>
+                                <tr>
+                                    <td>P1</td>
+                                    <td><input size="2" maxlength="2" id="n11"></td>
+                                    <td><input size="2" maxlength="2" id="n12"></td>
+                                    <td><input size="2" maxlength="2" id="n13"></td>
+                                </tr>
+                                <tr>
+                                    <td>P2</td>
+                                    <td><input size="2" maxlength="2" id="n21"></td>
+                                    <td><input size="2" maxlength="2" id="n22"></td>
+                                    <td><input size="2" maxlength="2" id="n23"></td>
+                                </tr>
+                                <tr>
+                                    <td>P3</td>
+                                    <td><input size="2" maxlength="2" id="n31"></td>
+                                    <td><input size="2" maxlength="2" id="n32"></td>
+                                    <td><input size="2" maxlength="2" id="n33"></td>
+                                </tr>
+                                <tr>
+                                    <td>P4</td>
+                                    <td><input size="2" maxlength="2" id="n41"></td>
+                                    <td><input size="2" maxlength="2" id="n42"></td>
+                                    <td><input size="2" maxlength="2" id="n43"></td>
+                                </tr>
+                                <tr>
+                                    <td>P5</td>
+                                    <td><input size="2" maxlength="2" id="n51"></td>
+                                    <td><input size="2" maxlength="2" id="n52"></td>
+                                    <td><input size="2" maxlength="2" id="n53"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Need Form Ends -->
+                    <!-- Available Form Starts -->
+                    <div class="col-3 text-center">
+                        <table class="text-center">
+                            <thead>
+                                <tr>
+                                    <th colspan="4">
+                                        <h4>Available</h4>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td>A</td>
+                                    <td>B</td>
+                                    <td>C</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><input size="2" maxlength="2" id="av11"></td>
+                                    <td><input size="2" maxlength="2" id="av12"></td>
+                                    <td><input size="2" maxlength="2" id="av13"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Available Form Ends -->
+                </div>
+
+
+
+
+                <!-- ALgo Button Starts -->
+                <div class="row m-5 text-center">
+                    <div class="col-4">
+                        <a class="button-sm" onclick="example()">Example</a>
+                    </div>
+                    <div class="col-4">
+                        <a class=" button-sm" onclick="run_algo()">Run ALGORITHM</a>
+                    </div>
+                    <div class="col-4">
+                        <a class=" button-sm" onclick="reset()">Reset Values</a>
+                    </div>
+                </div>
+                <!-- Algo Buttton Ends -->
+
+                <!-- Process Sequence Starts -->
+                <div class="row p-3 mt-3 mb-3">
+                    <div class="col-6 offset-4">
+                        <h4>Process Sequence :</h4><br>
+                        <input id="p1" size="2" maxlength="2" />&nbsp
+                        <input id="p2" size="2" maxlength="2" />&nbsp
+                        <input id="p3" size="2" maxlength="2" />&nbsp
+                        <input id="p4" size="2" maxlength="2" />&nbsp
+                        <input id="p5" size="2" maxlength="2" />&nbsp
+                    </div>
+                </div>
+            </div>` ,
+            postTestQuiz: "" } }) -%>
+            <%- include('../components/Footer.ejs', { sticky: true }) -%>
+                <script>
+                    const quizData = [
+                        {
+                            question: "What is the Banker's algorithm primarily used for in the context of operating systems?",
+                            options: [
+                                "CPU scheduling",
+                                "Deadlock detection",
+                                "Memory allocation",
+                                "File system management"
+                            ],
+                            answer: "Deadlock detection"
+                        },
+                        {
+                            question: "Which data structure is commonly used in the Banker's algorithm to keep track of the available, maximum, and allocated resources?",
+                            options: [
+                                "Queue",
+                                "Stack",
+                                "Matrix",
+                                "Linked List"
+                            ],
+                            answer: "Matrix"
+                        },
+                        {
+                            question: "What does it mean for a system to be in a 'safe state' according to the Banker's algorithm?",
+                            options: [
+                                "No processes are in the execution state",
+                                "Every process has its maximum claim satisfied",
+                                "No deadlock can occur, and all processes can complete",
+                                "All resources are fully utilized"
+                            ],
+                            answer: "No deadlock can occur, and all processes can complete"
+                        },
+                        {
+                            question: "Which of the following is a function of the Banker's algorithm?",
+                            options: [
+                                "Release resources back to the system",
+                                "Allocate resources without checking safety",
+                                "Terminate a process",
+                                "Check if a resource request can be granted safely"
+                            ],
+                            answer: "Check if a resource request can be granted safely"
+                        },
+                        {
+                            question: "What does the Banker's algorithm use to determine whether a resource request can be granted without leading to an unsafe state?",
+                            options: [
+                                "Maximum claim vector",
+                                "Allocation matrix",
+                                "Safety algorithm",
+                                "Request vector"
+                            ],
+                            answer: "Safety algorithm"
+                        }
+                    ];
+
+                    const quizData2 = [
+                        {
+                            question: "What is the mathematical property that the resource allocation state in the Banker's Algorithm must satisfy to ensure deadlock avoidance?",
+                            options: [
+                                "Consistency property",
+                                "Livelock property",
+                                "Safety property",
+                                "Mutual exclusion property"
+                            ],
+                            answer: "Safety property"
+                        },
+                        {
+                            question: "In the Banker's Algorithm, what is the purpose of the 'need' matrix, and how does it relate to deadlock avoidance?",
+                            options: [
+                                "It represents the currently allocated resources to each process and helps in deadlock detection.",
+                                "It represents the additional resources that each process needs to complete its execution and is used to prevent unsafe states.",
+                                "It stores the maximum resources that each process can request and assists in resource allocation.",
+                                "It tracks the resources released by completed processes and helps in resource recycling."
+                            ],
+                            answer: "It represents the additional resources that each process needs to complete its execution and is used to prevent unsafe states."
+                        },
+                        {
+                            question: "Explain the difference between immediate resource allocation and delayed resource allocation strategies in the context of the Banker's Algorithm.",
+                            options: [
+                                "Immediate resource allocation prioritizes processes with higher resource needs, while delayed resource allocation favors processes with lower resource demands.",
+                                "Immediate resource allocation grants all resource requests as soon as they arrive, while delayed resource allocation postpones resource allocation until it's deemed safe.",
+                                "Immediate resource allocation allocates resources without considering future resource needs, while delayed resource allocation evaluates potential future resource requests before allocation.",
+                                "Immediate resource allocation relies on centralized resource management, while delayed resource allocation employs distributed resource control mechanisms."
+                            ],
+                            answer: "Immediate resource allocation grants all resource requests as soon as they arrive, while delayed resource allocation postpones resource allocation until it's deemed safe."
+                        },
+                        {
+                            question: "How does the Banker's Algorithm handle cases where resource requests exceed the maximum claim of a process?",
+                            options: [
+                                "It adjusts the maximum claim dynamically based on the requested resources.",
+                                "It grants the request and adjusts the system state accordingly.",
+                                "It ignores the request until the process lowers its maximum claim.",
+                                "It denies the request, as it could lead to an unsafe state and compromise deadlock avoidance."
+                            ],
+                            answer: "It denies the request, as it could lead to an unsafe state and compromise deadlock avoidance."
+                        },
+                        {
+                            question: "Discuss the computational complexity of determining a safe sequence in the Banker's Algorithm and its implications for real-time systems.",
+                            options: [
+                                "Determining a safe sequence is polynomial-time and suitable for real-time systems with strict performance requirements.",
+                                "Determining a safe sequence is NP-hard, making it computationally expensive, especially for real-time systems with strict performance requirements.",
+                                "Determining a safe sequence is linear-time, ensuring efficient resource allocation in real-time systems.",
+                                "Determining a safe sequence is exponential-time, rendering it impractical for real-time systems with strict performance requirements."
+                            ],
+                            answer: "Determining a safe sequence is NP-hard, making it computationally expensive, especially for real-time systems with strict performance requirements."
+                        }
+                    ];
+
+                </script>
+                <script src="../static/Bankers.js"></script>
+                <script src="../static/Sidebar.js"></script>
+</body>
+
+</html>

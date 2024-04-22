@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="/css/Contact-Us.css">
+    <link rel="stylesheet" href="/css/global.css">
+</head>
+
+<body>
+    <%- include('../components/Header.ejs') -%>
+        <div class='heroSection'>
+            <img src="assets\cintel.jpg" alt="Contact Us image" />
+        </div>
+        <div class="contact-container">
+            <p class="contact-info">Our team is ready to answer your queries. Feel free to reach out to us:</p>
+            <div class="contact-info">
+                <div>
+                    <strong>Email:</strong> infodesk@srmist.edu.in
+                </div>
+                <div>
+                    <strong>Phone:</strong> +91-44- 27417000, +91-44-27417777
+                </div>
+                <div>
+                    <strong>Address:</strong> SRM Nagar, Kattankulathur - 603 203
+                    Chengalpattu District, Tamil Nadu.
+                </div>
+                <div>
+                    <strong>Follow us on social media:</strong>
+                    <p>
+                        <a href="https://www.facebook.com/SRMUniversityOfficial">Facebook</a> |
+                        <a href="https://twitter.com/SRM_Univ">Twitter</a> |
+                        <a href="https://www.instagram.com/SRMUniversityOfficial/">Instagram</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <%- include('../components/Footer.ejs' , { sticky: false }) -%>
+</body>
+
+</html>

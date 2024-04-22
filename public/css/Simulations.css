@@ -1,0 +1,49 @@
+.cardList {
+    display: flex;
+    padding: 3rem;
+    column-gap: 1rem;
+    row-gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    height: fit-content;
+}
+
+.card {
+    width: 30%;
+    padding: 0;
+    background-color: #f0f0f0;
+    border-radius: 10px 10px 0px 0px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.experimentName {
+    margin: 0;
+    padding: 1rem;
+    background-color: #C7BFD1;
+    /* Green */
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.experimentDescription {
+    padding: 0 1rem;
+    line-height: 1.8;
+    /* clip lines */
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+}
+
+
+
+@media (max-width: 768px) {
+    .card {
+        width: calc(50% - 10px);
+        /* 2 cards per row at smaller screens */
+    }
+}

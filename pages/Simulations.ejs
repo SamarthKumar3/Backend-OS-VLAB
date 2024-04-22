@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulations</title>
+  <link rel="stylesheet" href="/css/Simulations.css">
+  <link rel="stylesheet" href="/css/global.css">
+</head>
+
+<body>
+  <!-- <div className='cardList'>
+    <div className='card'>
+      <h3 className='experimentName'>title1</h3>
+      <p className='experimentDescription'>description1</p>
+      <a href='/Simulations/'>Try Experiment</a>
+    </div>
+  </div> -->
+  <%- include('../components/Header.ejs') -%>
+    <div class='cardList'>
+      <% experiments.forEach(function(experiment) { %>
+        <div class='card'>
+          <h3 class='experimentName'>
+            <%= experiment.title %>
+          </h3>
+          <p class='experimentDescription'>
+            <%= experiment.description %>
+          </p>
+          <a href="/Simulations/<%= experiment.link %>"
+            style="display: flex;justify-content: center;padding: 1rem; text-decoration: none;">
+            <button class="button-sm">Try Experiment</button>
+          </a>
+        </div>
+        <% }); %>
+    </div>
+    <%- include('../components/Footer.ejs' , { sticky: false }) -%>
+</body>
+
+</html>

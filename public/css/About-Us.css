@@ -1,0 +1,41 @@
+.heroSection {
+    text-align: center;
+    padding: 50px 40px;
+}
+
+.heroSection img {
+    width: 100%;
+    max-width: 3000px;
+    height: 400px;
+    display: block;
+    margin: 0 auto;
+    border: 2px solid #333;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+.labDescription {
+    text-align: justify;
+    padding: 10px 5%;
+}
+
+.labDescription h2 {
+    padding: 0;
+    font-size: 25px;
+    text-align: center;
+}
+
+.labDescription p {
+    line-height: 40px;
+    font-size: 20px;
+}
+
+.labDescription li {
+    line-height: 50px;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.labDescription ul {
+    padding-left: 100px;
+}

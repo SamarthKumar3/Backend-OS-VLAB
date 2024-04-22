@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <%- include('../components/Header.ejs') -%>
+        <%- include('../components/Sidebar.ejs', {sidebarData: { Name: `Memory-Management`, Intro: `Memory management is
+            the process of controlling and coordinating computer memory, assigning portions known as blocks or pages to
+            various running programs to optimize overall system performance. It involves managing the computer's memory
+            resources effectively, ensuring that each program gets the memory it needs and that memory is used
+            efficiently.`, learningObjective: `<ul>
+            <li>To understand the ability to move process around in memory without it affecting its execution.</li>
+            <li>To learn how OS manages memory and processes.</li>
+            <li>To know how a program be relocated before or during loading of process into memory</li>
+            <li>To learn how OS allows sharing, while at the same time ensure protection</li>
+            </ul>` ,
+            overview: `The Banker’s algorithm is a combination of two algorithms namely, Safety Algorithm and Resource
+            Request Algorithm. These two algorithms together control the processes and avoid dead lock in a system.
+            The Banker's algorithm is an algorithm for managing resources (like memory or CPU time) in a computer system
+            to prevent deadlocks. </br>
+            A deadlock is a situation where processes cannot progress because each process is
+            waiting for a resource that another process is holding. The Banker's algorithm works by dividing the
+            resources into resource types (such as memory and CPU time) and assigning a maximum number of units
+            available to each type. It then assigns resources to processes as they request them, while keeping track of
+            how many units of each type each process is holding. If a process requests a resource that is not available,
+            the Banker's algorithm checks if the remaining resources are sufficient to satisfy all of the process's
+            requests. If they are, the resource is allocated to the process. </br>
+            Otherwise, the process is placed in a waiting state until the requested resource becomes available. By
+            carefully managing the allocation of
+            resources, the Banker's algorithm helps to prevent deadlocks and ensures that the system remains in a safe
+            state, where no process will be permanently stuck waiting for resources.
+            `,
+            def:`<ul>
+                <li><strong>Available Resources Array:</strong> This array keeps track of the amount of each type of
+                    resource that is currently available in the system. </li>
+                <li><strong>Maximum Need Matrix:</strong> This matrix captures the maximum amount of resources of each
+                    type that each process can possibly request.</li>
+                <li><strong>Allocation Matrix:</strong> This matrix records the amount of resources of each type that
+                    each process currently holds. </li>
+                <li><strong>Need Matrix:</strong> This matrix is computed by subtracting the Allocation Matrix from the
+                    Maximum Need Matrix, indicating the amount of resources still needed by each process. </li>
+                <li><strong>Completed Processes Set:</strong>This set maintains a list of process IDs for processes that
+                    have completed their execution and released their resources.</li>
+            </ul>`,
+            preTestQuiz: `` , demo: `<div class="last-block">
+                <div class="divider" style="height: 10vh;"></div>
+                <div id="algo">
+                    <div class="container"
+                        style="width: 85vw; height: fit-content; margin-bottom: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                        <div
+                            style="display: flex; flex-direction: row; align-items: center; justify-content: center; flex-wrap: wrap;">
+                            <div
+                                style="margin: 10px; width: fit-content; display: flex; justify-content: center; align-items: center;">
+                                <strong>Reference String:</strong>
+                                <input class="input" type="text" style="width: 55%; min-width: 225px; margin: 5px;"
+                                    id="input">
+                            </div>
+                            <div style="margin: 10px; width: fit-content">
+                                <strong>Frames:</strong>
+                                <input class="input" type="number" id="frames"
+                                    style="width:30%; min-width: 50px; margin: 5px;" min=1 max=10>
+                            </div>
+                        </div>
+                        <button id="submit" type="button" class="btn btn-dark last_button input"
+                            style="margin: 10px; min-width: 80px;">Submit</button>
+                    </div>
+                    <div style="margin: 10px;">
+                        <br>
+                        <table id="table" class="container text-center"></table>
+                        <br>
+                        <div id="summary" class="d-flex justify-content-around font-weight-bold text-uppercase"> </div>
+                    </div>
+                </div>
+            </div>` ,
+            postTestQuiz: "Take a quiz to test your knowledge after completing the course" } }) -%>
+
+            <%- include('../components/Footer.ejs', { sticky: true }) -%>
+                <script src="../static/Sidebar.js"></script>
+</body>
+
+</html>

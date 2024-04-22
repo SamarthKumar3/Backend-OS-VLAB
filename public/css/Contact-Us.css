@@ -1,0 +1,35 @@
+.heroSection {
+    text-align: center;
+    padding: 50px 40px;
+}
+
+.heroSection img {
+    width: 100%;
+    max-width: 3000px;
+    height: 400px;
+    display: block;
+    margin: 0 auto;
+    border: 2px solid #333;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+.contact-container {
+    background-color: #ffffff;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    column-gap: 1.5rem;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 0.5rem;
+}

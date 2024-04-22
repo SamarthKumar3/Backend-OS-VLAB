@@ -1,0 +1,97 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.page-layout {
+    min-height: 100%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.side-control {
+    display: flex;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.exp-vis {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+
+.container {
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn {
+    width: max-content;
+    background: #7F4EBD;
+    padding: 8px 36px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #9872cb;
+}
+
+.input-group {
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.input {
+    background: #d9d9d9;
+    padding: 6px 0px;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 14px;
+    border: none;
+}
+
+.input:active,
+.input:focus {
+    outline: #7F4EBD 2px solid;
+}
+
+.label {
+    padding: 6px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+}

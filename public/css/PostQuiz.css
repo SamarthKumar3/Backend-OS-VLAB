@@ -1,0 +1,30 @@
+.quiz-container {
+    margin-bottom: 20px;
+}
+
+.question {
+    margin: 0.5rem 0;
+    color: black;
+}
+
+.option {
+    display: flex;
+    cursor: pointer;
+    margin-bottom: 5px;
+    padding: 0.5rem;
+    width: fit-content;
+    border-radius: 5px;
+}
+
+.correct {
+    background-color: rgb(38, 184, 38);
+}
+
+.wrong {
+    background-color: red;
+}
+
+.quiz-score{
+    padding: 1rem;
+    color: black;
+}

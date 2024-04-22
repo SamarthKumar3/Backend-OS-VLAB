@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600&display=swap");
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  font-family: "Plus Jakarta Sans";
+}
+
+#root {
+  height: 100%;
+}
+
+
+body {
+  margin: 0;
+  line-height: normal;
+}
+
+:root {
+  /* fonts */
+  --font-plus-jakarta-sans: "Plus Jakarta Sans";
+
+  /* font sizes */
+  --font-size-17xl: 1.75rem;
+  --font-size-3xl: 1.375rem;
+  --font-size-10xl: 1.813rem;
+  --font-size-11xl: 1.25rem;
+  --font-size-13xl: 1.35rem;
+  --font-size-lgi: 1.188rem;
+  --font-size-7xl: 1.625rem;
+
+  /* Colors */
+  --color-white: #fff;
+  --color-gray-100: rgba(255, 255, 255, 0);
+  --color-gray-200: rgba(0, 0, 0, 0.25);
+  --color-gray-300: rgba(0, 0, 0, 0.63);
+  --color-black: #000;
+  --color-slateblue: #7f4ebd;
+  --navbar-blue: #331a53;
+
+  /* Gaps */
+  --gap-29xl: 3rem;
+  --gap-3xl: 1.375rem;
+  --gap-0: 0rem;
+  --gap-16xl: 2.188rem;
+
+  /* Paddings */
+  --padding-xl: 1.25rem;
+  --padding-9xs: 0.25rem;
+  --padding-xs: 0.75rem;
+  --padding-14xl: 2.063rem;
+  --padding-80xl: 6.188rem;
+  --padding-30xl: 3.063rem;
+  --padding-6xs: 0.438rem;
+  --padding-6xl: 1.563rem;
+  --padding-42xl: 3.813rem;
+  --padding-lgi: 1.188rem;
+  --padding-639xl: 41.125rem;
+  --padding-310xl: 20.563rem;
+  --padding-11xl: 1.875rem;
+  --padding-5xs: 0.5rem;
+  --padding-sm: 0.875rem;
+  --padding-2xl: 1.313rem;
+  --padding-3xs: 0.625rem;
+  --padding-mid: 1.063rem;
+  --padding-7xs: 0.375rem;
+
+  /* Border radiuses */
+  --br-mini: 15px;
+}
+
+.no-decoration {
+  text-decoration: none !important;
+  color: var(--color-gray-300);
+}
+
+.button{
+  margin-top: 1rem;
+  background-color: var(--color-slateblue);
+  color: var(--color-white);
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--br-mini);
+  font-size: var(--font-size-13xl);
+  font-family: var(--font-plus-jakarta-sans);
+  cursor: pointer;
+  border: none;
+}
+
+.button-sm{
+  font-family: var(--font-plus-jakarta-sans);
+  background-color: var(--color-slateblue);
+  color: var(--color-white);
+  border-radius: var(--br-mini);
+  cursor: pointer;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+}

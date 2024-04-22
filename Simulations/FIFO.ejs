@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIFO</title>
+    <!-- global styles -->
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/FIFO.css">
+
+</head>
+
+<style>
+    td {
+        border: 2px solid black !important;
+    }
+
+    #table {
+        width: 80vw;
+        margin: 15px;
+    }
+
+    #summary {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+</style>
+
+<body>
+    <%- include('../components/Header.ejs') -%>
+        <%- include('../components/Sidebar.ejs', {sidebarData: { Name: `Page Replacement Algorithm: FIFO`, Intro: `We
+            will understand how FIFO(First In First Out) Page Replacement algorithm works. To Determine which page in
+            the main memory should be replaced when a page fault occurs.`, learningObjective: `<ul> In this experiment,
+            we will be able to do the following:
+            <li>Learn how FIFO operates in managing pages in a computer's memory.</li>
+            <li>Given the page reference string values with number of page frames, we will find out number of page
+                faults.</li>
+            <li>Comparison of FIFO with other page replacement algorithms.</li>
+            </ul>` ,
+            overview: `<ul>
+                <li>The aim of this experiment is to understand the FIFO algorithm and how
+                    it compares against other replacement algorithms.</li>
+                <li>The experiment features a series of modules with video lectures,
+                    interactive demonstrations, simulations, hands-on practice exercises and
+                    quizzes to self analyze.</li>
+            </ul>`,
+            def:`<ul>
+                <li><strong>Page Hit:</strong> When the page CPU is trying to access from the main memory (RAM) is actually present there, it is known as a Page hit. </li>
+                <li><strong>Page Fault:</strong> When the page CPU is trying to access from the main memory (RAM) is not present there, it is known as a Page fault. </li>
+                
+            </ul>`,
+            preTestQuiz: `` ,postTestQuiz: "", simulation: `<div class="last-block">
+                <div class="divider" style="height: 10vh;"></div>
+                <div id="algo">
+                    <div class="container"
+                        style="width: 85vw; height: fit-content; margin-bottom: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                        <div
+                            style="display: flex; flex-direction: row; align-items: center; justify-content: center; flex-wrap: wrap;">
+                            <div
+                                style="margin: 10px; width: fit-content; display: flex; justify-content: center; align-items: center;">
+                                <strong>Reference String:</strong>
+                                <input class="input" type="text" style="width: 55%; min-width: 225px; margin: 5px;"
+                                    id="input">
+                            </div>
+                            <div style="margin: 10px; width: fit-content">
+                                <strong>Frames:</strong>
+                                <input class="input" type="number" id="frames"
+                                    style="width:30%; min-width: 50px; margin: 5px;" min=1 max=10>
+                            </div>
+                        </div>
+                        <button id="submit" type="button" class="button-sm last_button input"
+                            style="margin: 10px; min-width: 80px;">Submit</button>
+                    </div>
+                    <div style="margin: 10px;">
+                        <br>
+                        <table id="table" class="container text-center"></table>
+                        <br>
+                        <div id="summary" class="d-flex justify-content-around font-weight-bold text-uppercase"> </div>
+                    </div>
+                </div>
+            </div>` ,
+             } }) -%>
+
+            <%- include('../components/Footer.ejs', { sticky: true }) -%>
+            <script>
+                const quizData = [
+    {
+        question: "In FIFO page replacement, which page is the first to be replaced when a page fault occurs?",
+        options: ["The page with the highest priority", "The oldest page in the memory", "The newest page in the memory", "The page with the lowest priority"],
+        answer: "The oldest page in the memory"
+    },
+    {
+        question: "How is the order of pages maintained in the FIFO page replacement algorithm?",
+        options: ["Using a priority queue", "Using a circular queue", "Using a stack", "Using a linked list"],
+        answer: "Using a circular queue"
+    },
+    {
+        question: "What is Belady’s Anomaly in the context of FIFO page replacement?",
+        options: ["It refers to the fact that FIFO always produces the optimal solution.", "It is the phenomenon where increasing the number of page frames may increase the number of page faults.", "It is the optimal solution to the page replacement problem.", "It occurs when the memory is not sufficient for the application's requirements."],
+        answer: "It is the phenomenon where increasing the number of page frames may increase the number of page faults."
+    },
+    {
+        question: "Which of the following statements is true regarding the FIFO page replacement algorithm?",
+        options: ["It always outperforms the optimal algorithm.", "It suffers from race conditions.", "It may perform poorly when the page access pattern is cyclic.", "It is suitable for all types of memory configurations."],
+        answer: "It may perform poorly when the page access pattern is cyclic."
+    },
+    {
+        question: "In a FIFO-based page replacement system, what happens if the page queue is full, and a new page needs to be added?",
+        options: ["The oldest page in the queue is removed.", "The newest page in the queue is removed.", "A new page is added at the end of the queue.", "The entire queue is cleared."],
+        answer: "The oldest page in the queue is removed."
+    }
+];
+const quizData2 = [
+    {
+        question: "In a system with a page frame capacity of 4, if the sequence of page references is A, B, C, D, E, A, B, F, what will be the page faults count using FIFO?",
+        options: ["5", "6", "7", "8"],
+        answer: "7"
+    },
+    {
+        question: "In FIFO, what happens if a page is referenced multiple times before being replaced?",
+        options: ["It is considered a single reference", "Each reference is counted separately", "The page is immediately replaced", "The algorithm crashes"],
+        answer: "It is considered a single reference"
+    },
+    {
+        question: "If the page frame capacity is equal to the number of pages in the system, what is the page fault rate in the FIFO algorithm?",
+        options: ["0%", "25%", "50%", "100%"],
+        answer: "0%"
+    },
+    {
+        question: "Which of the following scenarios is FIFO particularly suitable for?",
+        options: ["Real-time systems", "Systems with a high degree of parallelism", "Systems with a stable and predictable workload", "Systems with a dynamic and unpredictable workload"],
+        answer: "Systems with a stable and predictable workload"
+    },
+    {
+        question: "Which of the following is a drawback of the FIFO page replacement algorithm?",
+        options: ["It is difficult to implement", "It may suffer from Belady's Anomaly", "It always provides optimal performance", "It requires a large amount of memory"],
+        answer: "It may suffer from Belady's Anomaly"
+    }
+];
+
+            </script>
+                <script src="../static/Sidebar.js"></script>
+                <script src="../static/search.js"></script>
+                <script src="../static/fifo.js"></script>
+</body>
+
+</html>

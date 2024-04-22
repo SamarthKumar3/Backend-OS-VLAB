@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dining Philosopher</title>
+    <link rel="stylesheet" href="/css/Dining.css">
+</head>
+
+<body>
+    <%- include('../components/Header.ejs') -%>
+        <%- include('../components/Sidebar.ejs', {sidebarData: { Name: "Dining Philosopher" , Intro: `The dining
+            philosophers problem is a classic synchronization problem that is used to represent the challenges of
+            deadlock and resource allocation in concurrent programming. The problem is based on a scenario where a group
+            of philosophers sit at a table and eat spaghetti. The philosophers alternate between thinking and eating,
+            but they must share a limited number of forks placed between them. The challenge is to design a solution
+            that allows the philosophers to eat without causing a deadlock or starvation.` , learningObjective: `<ul>
+            In this experiment, we will be able to do the following:
+            <li>Understand the dining philosophers problem and its relevance in concurrent programming.</li>
+            <li>Identify the challenges of deadlock and resource allocation in concurrent programming.</li>
+            <li>Design and implement a solution to the dining philosophers problem using synchronization techniques.
+            </li>
+            <li>Simulate the dining philosophers problem and evaluate the performance of the solution.</li>
+            </ul>` ,
+            learningObjective:`The dining philosopher demonstrates a large class of concurrency control problems hence
+            it's a classic synchronization problem. In
+            general we commonly use Semaphores and Mutex Locks as the synchronization mechanism. For this instance, we
+            will be using only binary semaphore.`,
+
+            overview:`<p><b>What is Dining Philosophers Problem?</b><br><br>The dining philosopher's problem is the
+                classical problem of synchronization which says that Five philosophers are sitting around a
+                circular table and their job is to think and eat alternatively. A bowl of noodles is placed at the
+                center of
+                the table along with
+                five forks for each of the philosophers. To eat a philosopher needs both their right and a left fork.
+                A philosopher can only eat if both immediate left and right forks of the philosopher is available. In
+                case
+                if
+                both immediate left and right forks of the philosopher are not available then the philosopher puts down
+                their
+                (either left or right) fork and starts thinking again.<br><br>
+                <br><br>
+
+                <b>What is a deadlock and why is it important to remove?</b><br><br>
+                A deadlock in concurrent programming happens when multiple processes are stuck in a cycle of waiting for
+                each other to release resources,
+                leading to a complete standstill. It is important to remove deadlocks because they result in
+                unresponsive
+                systems, decreased
+                performance, and a failure to accomplish tasks. Deadlocks hinder the efficiency of concurrent
+                systems, making it crucial to employ techniques like careful resource allocation and deadlock
+                detection to prevent or resolve these situations and maintain overall system functionality.
+            </p>`,
+            def:`<strong>Semaphore:</strong><br /> In the Dining Philosophers problem,
+            a semaphore is a synchronization tool that helps manage access to shared resources, such as forks. It
+            prevents conflicts by allowing philosophers to check and update the
+            availability of forks before picking them up to eat. Semaphores play a crucial role in avoiding deadlock and
+            ensuring orderly
+            resource usage in a concurrent dining scenario.For this problem, we will be using binary semaphore which
+            means that there can be only two answers that is
+            True (1) or False (0).`,
+            demo: `<div class="container">
+                <b>1.Resource Hierarchy Solution:</b><br>(Odd-Even Method)<br><br>
+            </div>
+            <div class="container">
+                <video width="640" height="360" controls autoplay muted loop id="original-video">
+                    <source src="/deadlock_sol.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="container">
+                <br>
+                We resolve the deadlock while using the Resource Hierarchy Solution by instructing even-numbered
+                Philosophers (2 and 4) to pick up
+                the Fork to their left, while odd-numbered Philosophers (1, 3, and 5) pick up the Fork to their right.
+                Let's revisit the
+                previous scenario where all Philosophers transition from the thinking to the eating state
+                simultaneously. Since only one Philosopher
+                can use a single Fork at a time, when Philosopher 1 and 2 both aim for the same Fork (Fork 2),
+                Philosopher 2 reverts to the thinking
+                stage. The same occurs for Philosopher 3 and 4.<br> Now Philosopher 4 and 5 again aim for the same Fork
+                (Fork 1), resulting in Philosopher
+                4 reverting to the thinking stage while Philosopher 5 can eat since he has obtained both Forks. Upon
+                finishing his meal, he returns the Fork,
+                allowing the other Philosopher to continue eating.<br><br>
+            </div>
+
+            <div class="container">
+                <b>2. Solution to the Deadlock with Semaphores</b><br><br><br>
+            </div>
+            <div id="circle" class="circle">
+                <div class="philosopher" id="philosopher1">
+                    <img src="/man_11.png" alt="Philosopher">
+                    <div class="numbering" id="numbering1">1</div>
+                </div>
+                <div class="philosopher" id="philosopher2">
+                    <img src="/man_22.png" alt="Philosopher">
+                    <div class="numbering" id="numbering2">2</div>
+                </div>
+                <div class="philosopher" id="philosopher3">
+                    <img src="/man_33.png" alt="Philosopher">
+                    <div class="numbering" id="numbering3">3</div>
+                </div>
+                <div class="philosopher" id="philosopher4">
+                    <img src="/man_44.png" alt="Philosopher">
+                    <div class="numbering" id="numbering4">4</div>
+                </div>
+                <div class="philosopher" id="philosopher5">
+                    <img src="/man_55.png" alt="Philosopher">
+                    <div class="numbering" id="numbering5">5</div>
+                </div>
+            </div>
+            <div id="square" class="square">
+                <div class="spoon" id="spoon1">
+                    <img src="/spoon_bgremoved.png" alt="Spoon">
+                    <div class="numberingspoon" id="numbering6">1</div>
+                </div>
+                <div class="spoon" id="spoon2">
+                    <img src="/spoon_bgremoved.png" alt="Spoon">
+                    <div class="numberingspoon" id="numbering7">2</div>
+                </div>
+                <div class="spoon" id="spoon3">
+                    <img src="/spoon_bgremoved.png" alt="Spoon">
+                    <div class="numberingspoon" id="numbering8">3</div>
+                </div>
+                <div class="spoon" id="spoon4">
+                    <img src="/spoon_bgremoved.png" alt="Spoon">
+                    <div class="numberingspoon" id="numbering9">4</div>
+                </div>
+                <div class="spoon" id="spoon5">
+                    <img src="/spoon_bgremoved.png" alt="Spoon">
+                    <div class="numberingspoon5" id="numbering1">5</div>
+                </div>
+            </div>
+            <button onclick="startSimulation()" class="button-sm">Start</button>
+            <button onclick="stopSimulation()" class="button-sm">Stop</button>
+            <div class="table">
+                <h2>Dining Philosophers Table</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Philosopher</th>
+                            <th>Status</th>
+                            <th>Spoon</th>
+                            <th>Spoon Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+            <div class="container">
+                <br>Semaphores can be used to solve the dining philosophers problem by representing the chopsticks as
+                semaphores.
+                Before a philosopher picks up a chopstick, they must acquire the corresponding semaphore (using wait).
+                If the semaphore is not available,
+                they wait until it becomes available. Once they finish using the chopstick, they release it (using
+                signal).<br><br>
+            </div>`,
+            preTestQuiz:``,
+            postTestQuiz:``,
+            simulation:``,
+            overflow:true
+            }}) -%>
+            <%- include('../components/Footer.ejs') -%>
+                <script>
+
+                    const quizData = [
+                        {
+                            question: "What is the Dining Philosophers problem?",
+                            options: [
+                                "A problem in ethics about philosophers debating at a dining table",
+                                "A concurrency problem involving resource sharing among philosophers",
+                                "A scheduling problem in operating systems",
+                                "A problem in artificial intelligence involving decision-making by philosophers"
+                            ],
+                            answer: "A concurrency problem involving resource sharing among philosophers"
+                        },
+                        {
+                            question: "How many philosophers and forks are typically involved in the classic Dining Philosophers problem?",
+                            options: [
+                                "3 philosophers and 3 forks",
+                                "4 philosophers and 4 forks",
+                                "5 philosophers and 5 forks",
+                                "6 philosophers and 6 forks"
+                            ],
+                            answer: "5 philosophers and 5 forks"
+                        },
+                        {
+                            question: "What is the primary challenge in the Dining Philosophers problem?",
+                            options: [
+                                "Ensuring philosophers get enough food",
+                                "Preventing deadlock and avoiding resource contention",
+                                "Ensuring philosophers share their thoughts",
+                                "Maximizing the speed of philosophers' decision-making"
+                            ],
+                            answer: "Preventing deadlock and avoiding resource contention"
+                        },
+                        {
+                            question: "Which synchronization mechanism is commonly used to solve the Dining Philosophers problem?",
+                            options: [
+                                "Mutex locks",
+                                "Semaphores",
+                                "Spinlocks",
+                                "Both a and b"
+                            ],
+                            answer: "Both a and b"
+                        },
+                        {
+                            question: "What is the purpose of using a semaphore or mutex lock in the Dining Philosophers solution?",
+                            options: [
+                                "To increase the speed of philosophers' decision-making",
+                                "To prevent philosophers from eating concurrently and avoid conflicts",
+                                "To allow philosophers to access shared resources simultaneously",
+                                "To limit the number of thoughts a philosopher can have at a time"
+                            ],
+                            answer: "To prevent philosophers from eating concurrently and avoid conflicts"
+                        }
+                    ];
+
+                    const quizData2 = [
+                        {
+                            question: "The Dining-Philosophers Problem Solution is:",
+                            options: [
+                                "Deadlock free solution",
+                                "Starvation free solution",
+                                "Page fault free solution",
+                                "All of the above"
+                            ],
+                            answer: "Deadlock free solution"
+                        },
+                        {
+                            question: "All processes share a semaphore variable mutex, which is initialized to 1. Each process must execute wait(mutex) before entering the critical section and signal(mutex) afterward. Suppose that a process replaces signal(mutex) with wait(mutex). In this case:",
+                            options: [
+                                "A deadlock will occur",
+                                "Processes will starve to enter critical section",
+                                "Several processes maybe executing in their critical section",
+                                "A deadlock will not occur"
+                            ],
+                            answer: "A deadlock will occur"
+                        },
+                        {
+                            question: "All processes share a semaphore variable mutex, which is initialized to 1. Each process must execute wait(mutex) before entering the critical section and signal(mutex) afterward. Suppose that a process interchanges the order in which the wait() and signal() operations on the semaphore mutex are executed, resulting in the following execution: signal(mutex); ... critical section ... wait(mutex); In this situation:",
+                            options: [
+                                "A deadlock will occur",
+                                "Processes will starve to enter critical section",
+                                "Several processes maybe executing in their critical section",
+                                "All of the mentioned"
+                            ],
+                            answer: "Several processes maybe executing in their critical section"
+                        },
+                        {
+                            question: "In the following execution: signal(mutex); ... critical section ... wait(mutex); Suppose that a process omits the wait(mutex), or the signal(mutex), or both. In this case:",
+                            options: [
+                                "Processes will starve to enter critical section",
+                                "Either mutual exclusion is violated or a deadlock will occur",
+                                "Several processes maybe executing in their critical section",
+                                "Processes will not starve to enter critical section"
+                            ],
+                            answer: "Either mutual exclusion is violated or a deadlock will occur"
+                        },
+                        {
+                            question: "The segment of code in which the process may change common variables, update tables, etc is known as:",
+                            options: [
+                                "Program",
+                                "Non-critical section",
+                                "Synchronizing code",
+                                "Critical section"
+                            ],
+                            answer: "Critical section"
+                        }
+                    ];
+
+
+                </script>
+                <script src="../static/Sidebar.js"></script>
+                <script src="../static/Dining.js"></script>
+</body>
+
+</html>
