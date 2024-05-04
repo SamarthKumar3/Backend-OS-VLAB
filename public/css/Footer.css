@@ -1,12 +1,43 @@
 .background-rectangle {
     background-color: #331a53;
-    bottom: 0;
-    height: 5rem;
+    display: flex;
+    column-gap: 1rem;
+    justify-items: center;
+    align-items: center;
 }
 
 .bottom {
     width: 100%;
     left: 0;
-    position: absolute;
     background-color: #331a53;
+}
+
+.contact-us {
+    color: white;
+    line-height: 1.5
+}
+
+.contact-us a{
+    color: white;
+text-decoration: none;
+}
+
+.footer-content-left {
+    width: 50%;
+}
+
+.footer-img {
+    padding: 2rem;
+    width: 80%;
+}
+
+.footer-divider {
+    width: 1px;
+    height: 15rem;
+    border-right: 1px solid gray;
+    margin: 0;
+}
+
+.footer-content-right {
+    margin-left: 5rem;
 }

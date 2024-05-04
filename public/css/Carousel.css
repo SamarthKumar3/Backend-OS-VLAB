@@ -1,0 +1,39 @@
+.carousel {
+    position: relative;
+    /* max-width: 600px;  */
+    /* margin: auto; */
+}
+
+.carousel-images{
+    width: 100%;
+}
+
+
+.carousel-image {
+    width: 100%;
+    display: none;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 20rem;
+}
+
+.carousel-nav {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #717171;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+        background-color: #331A53;
+}
