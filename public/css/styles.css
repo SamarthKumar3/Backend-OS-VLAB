@@ -16,30 +16,46 @@
     object-fit: contain;
 }
 
-.labDescription {
+.section-1 {
     text-align: justify;
     padding: 10px 5%;
+    margin-bottom: 5rem;
 }
 
-.labDescription h2 {
-    padding: 0;
-    font-size: 25px;
-    text-align: center;
+.hero-content{
+    margin-bottom: 5rem;
 }
 
-.labDescription p {
+.hero-content p {
     line-height: 40px;
-    font-size: 20px;
+    font-size: 18px;
 }
 
-.labDescription li {
-    line-height: 50px;
+.button-index {
+    font-family: var(--font-plus-jakarta-sans);
+    background-color: var(--navbar-blue);
+    color: var(--color-white);
+    cursor: pointer;
+    border: none;
+    padding: 0.75rem 1.25rem;
     font-size: 20px;
-    padding: 10px;
+    margin: 0;
 }
 
-.labDescription ul {
-    padding-left: 100px;
+.button-index:focus {
+    background-color: var(--color-white);
+    color: var(--navbar-blue);
+    border: solid 1px #A6A6A7;
+}
+
+.underline {
+    border: none;
+    border-top: 1px solid #A6A6A7;
+    margin-top: -1px;
+}
+
+.section-2{
+    margin-bottom: 5rem;
 }
 
 .myButton {
@@ -51,6 +67,10 @@
     text-decoration: none;
     border-radius: 20px 20px 0px 0px;
     width: 100%;
+}
+
+.lab-container {
+    padding: 10px 5%;
 }
 
 .buttons {
@@ -78,4 +98,48 @@
     justify-content: center;
     align-items: stretch;
     margin-bottom: 15px;
+}
+
+.hero-choice {
+    display: flex;
+}
+
+.welcome-heading {
+    text-align: center;
+    padding: 10px;
+    color: #331a53;
+    margin-top: 4rem;
+}
+
+.welcome-holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    column-gap: 3rem;
+    background-color: #F2E8FE;
+    border-radius: 20px;
+}
+
+.welcome-holder p { 
+    line-height: 40px;
+    font-size: 18px;
+}
+
+.hod-img {
+    width: 15%;
+    border-radius: 100%;
+    border: 3px solid #331a53;
+}
+
+.lab-header {
+    width: 100%;
+    background-color: #331a53;
+
+}
+
+.lab-header h1 {
+    color: white;
+    padding: 10px;
+    margin-left: 2%;
 }

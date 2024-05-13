@@ -21,44 +21,81 @@
 
 <body>
     <%- include('./components/Header.ejs') -%>
-    <%-  include('./components/Carousel.ejs') -%>
-    <div class="labDescription">
-        <h2>About Our Virtual Lab</h2>
-        <p>Good lab facilities and updated lab experiments are critical for any engineering college. Paucity of lab
-            facilities often make it difficult to conduct experiments. Also, good teachers are always a scarce resource.
-            The Virtual Labs project addresses this issue of lack of good lab facilities, as well as trained teachers,
-            by providing remote-access to simulation-based Labs in various disciplines of science and engineering. Yet
-            another objective is to arouse the curiosity of the students and permit them to learn at their own pace.
-            This student-centric approach facilitates the absorption of basic and advanced concepts through
-            simulation-based experimentation. Internet-based experimentation further permits use of additional
-            web-resources, video-lectures, animated demonstrations and self-evaluation. Specifically, the Virtual Labs
-            project addresses the following: </p>
-        <div class="bullet">
-            <ul>
-                <li>Access to online labs to those engineering colleges that lack these lab facilities</li>
-                <li>Access to online labs as a complementary facility to those colleges that already have labs</li>
-                <li>Training and skill-set augmentation through workshops and on-site/ online training</li>
-            </ul>
-        </div>
-        <p>Virtual labs are any place, any pace, any-time, any-type labs. It is a paradigm shift in student-centric,
-            online education.</p>
-    </div>
-
-    <div class="labDescription">
-        <h2>Labs</h2>
-        <div class="buttons">
-            <div class="myButton">
-                <p>Operating System</p>
+        <%- include('./components/Carousel.ejs') -%>
+            <div class="section-1">
+                <div class="hero-choice">
+                    <button class="button-index">About the department</button>
+                    <button class="button-index">Vision and Mission</button>
+                </div>
+                <div class="underline"></div>
+                <!-- <h2>About Our Virtual Lab</h2>
+                    <p>Good lab facilities and updated lab experiments are critical for any engineering college. Paucity of lab
+                            facilities often make it difficult to conduct experiments. Also, good teachers are always a scarce resource.
+                            The Virtual Labs project addresses this issue of lack of good lab facilities, as well as trained teachers,
+                            by providing remote-access to simulation-based Labs in various disciplines of science and engineering. Yet
+                            another objective is to arouse the curiosity of the students and permit them to learn at their own pace.
+                            This student-centric approach facilitates the absorption of basic and advanced concepts through
+                            simulation-based experimentation. Internet-based experimentation further permits use of additional
+                            web-resources, video-lectures, animated demonstrations and self-evaluation. Specifically, the Virtual Labs
+                            project addresses the following: </p>
+                    <div class="bullet">
+                        <ul>
+                            <li>Access to online labs to those engineering colleges that lack these lab facilities</li>
+                            <li>Access to online labs as a complementary facility to those colleges that already have labs</li>
+                            <li>Training and skill-set augmentation through workshops and on-site/ online training</li>
+                        </ul>
+                    </div>
+                    <p>Virtual labs are any place, any pace, any-time, any-type labs. It is a paradigm shift in student-centric,
+                        online education.</p> -->
+                <div class="hero-content">
+                    <p>The Department of Computational Intelligence is an educational milieu that creates a foreground
+                        for students to acquire knowledge in the futuristic areas of  Artificial Intelligence, Machine
+                        Learning and Software Engineering. We strive to create students ready for the industry with the
+                        ability to develop and sustain space-age systems.
+                        The curriculum’s prime focus is to endorse learning through the key concepts of acquire,
+                        analyze, design, and implement oriented teaching, which will create the students’ ability to
+                        challenge, innovate, and compete with assigned Capstone projects to solve real-world problems to
+                        make themselves industry ready professionals and enable them to become future entrepreneurs.
+                        With no lid to cap your creative genius, the Department of Computational Intelligence brings you
+                        forth all the means to implement and take advantage of a wide variety of emerging cutting-edge
+                        technologies in software systems or simply be the mastermind behind it all.</p>
+                </div>
+                <div class="underline"></div>
+                <h1 class="welcome-heading">Welcome Message</h1>
+                <div>
+                    <div class="welcome-holder">
+                        <img src="/Dr.R.-Annie-Uthra.jpg" alt="Dr. R. Annie Uthra, HoD CINTEL Department"
+                            class="hod-img" />
+                        <p>The Department of Computational Intelligence has taken the initiative to empower each and
+                            every one of its students to be confident, diligent, focused, and exceptional. Artificial
+                            Intelligence, Machine Learning and Software Development are the unseen fuels that power the
+                            world. Our department is committed to developing each student’s potential and achieving
+                            global excellence. By embracing various inter-disciplinary streams, we make it possible for
+                            each to experiment with their environment. With a faculty of highly experienced and
+                            dedicated instructors committed to each student’s growth, we strive to produce engineers of
+                            high caliber and make a mark on the world.</p>
+                    </div>
+                </div>
             </div>
-            <!-- <div class="myButton">
-                <p>AR/VR</p>
-            </div> -->
-        </div>
-        <div class="cards">
-            <!-- <img class="card" src="assets\operating-system-t.jpg" alt="" /> -->
-            <a href='/Simulations' class="no-decoration card"><img class="card" src="https://placehold.co/600x200" alt="" /></a></div>
-            
-        </div>
-    </div>
-    <%- include('./components/Footer.ejs', { sticky: false }) -%>
+
+
+            <div class="section-2">
+                <div class="lab-header">
+                    <h1>Virtual Labs</h1>
+                </div>
+                <div class="lab-container">
+                    <div class="buttons">
+                        <div class="myButton">
+                            <p>Operating System</p>
+                        </div>
+                    </div>
+                    <div class="cards">
+                        <a href='/Simulations' class="no-decoration card"><img class="card"
+                                src="https://placehold.co/600x200" alt="" /></a>
+                    </div>
+                </div>
+
+            </div>
+            </div>
+            <%- include('./components/Footer.ejs', { sticky: false }) -%>
 </body>
