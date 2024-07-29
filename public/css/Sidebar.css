@@ -120,14 +120,18 @@ p {
 .korem-ipsum-dolor {
     align-self: stretch;
     /* height: 16.813rem; */
-    
+    text-align: justify;
     line-height: 1.2;
     position: relative;
     font-weight: 500;
     display: none;
 }
 
-.korem-overflow{
+.korem-ipsum-dolor ul li{
+    margin-top: 1rem;
+}
+
+.korem-overflow {
     overflow-y: scroll;
     height: 50vh;
 }

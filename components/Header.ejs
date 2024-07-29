@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="/css/global.css" type="text/css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
-<nav class="nav">
+<!-- <nav class="nav">
     <div class="nav-child1">
         <img class="logo-icon" loading="eager" alt="" src="/SRM-logo.png" />
         <div class="divider"></div>
@@ -12,7 +12,7 @@
         </div>
         <div class="nav-child1-a">
             <div class="search-bar">
-                <input class="search-input" type="text" placeholder="Search" />
+                <input id="search-input" type="text" placeholder="Search" />
                 <button type="submit" class="search-button"><i class="fa fa-search"></i></button>
 
             </div>
@@ -30,4 +30,33 @@
         </div>
     </div>
 
+</nav> -->
+
+<nav class="nav">
+    <div class="nav-child1">
+        <img class="logo-icon" loading="eager" alt="" src="/SRM-logo.png" />
+        <div class="divider"></div>
+        <div class="vlab-header">
+            <h4>Virtual Labs</h4>
+            <h6>Under the department of Computational Intelligence</h6>
+        </div>
+        <div class="nav-child1-a">
+            <div class="search-bar">
+                <input id="search-input" type="text" placeholder="Search" />
+                <button type="submit" class="search-button"><i class="fa fa-search"></i></button>
+                <ul id="suggestions" class="dropdown-menu"></ul>
+            </div>
+        </div>
+    </div>
+    <div class="nav-child2">
+        <div class="nav-tab-frame">
+            <div class="home"><a href='/' class="no-decoration">Home</a></div>
+        </div>
+        <div class="nav-tab-frame">
+            <div class="about-us"><a href='/About-Us' class="no-decoration">About-Us</a></div>
+        </div>
+        <div class="nav-tab-frame">
+            <div class="contact"><a href='/Contact' class="no-decoration">Contact</a></div>
+        </div>
+    </div>
 </nav>

@@ -13,9 +13,10 @@
 
 <body>
     <%- include('../components/Header.ejs') -%>
-        <%- include('../components/Sidebar.ejs', {sidebarData: { Name: "Producer-Consumer" ,
-            Intro: `The producer-consumer problem is a classic synchronisation problem that involves two types of concurrent processes: producers, which create data items, and consumers, which consume those items.`
-            , learningObjective: `<ul>
+        <%- include('../components/Sidebar.ejs', {sidebarData: { Name: "Producer-Consumer" , Intro: `The
+            producer-consumer problem is a classic synchronisation problem that involves two types of concurrent
+            processes: producers, which create data items, and consumers, which consume those items.` ,
+            learningObjective: `<ul>
             <li>Understand the producer-consumer problem and its relevance in concurrent programming.</li>
             <li>Learn how to implement the producer-consumer model using semaphores for
                 synchronisation.</li>
@@ -69,14 +70,14 @@
                 <div class="side-control">
                     <div class="container">
                         <div class="input-group">
-                            <input id="chunks-count" type="number" min="1" class="input">
+                            <input id="chunks-count2" type="number" min="1" class="input">
                             <label class="label">No. of Chunks</label>
                         </div>
                         <div class="input-group">
-                            <input id="queue-cap" type="number" min="1" max="6" class="input">
+                            <input id="queue-cap2" type="number" min="1" max="6" class="input">
                             <label class="label">Queue Capacity</label>
                         </div>
-                        <button id="options-apply" class="btn">Apply</button>
+                        <button id="options-apply2" class="btn">Apply</button>
                     </div>
                 </div>
                 <div class="exp-vis">
@@ -150,4 +151,6 @@
 <script src="../static/Producer.js"></script>
 <script src="../static/Consumer.js"></script>
 
+<script src="../static/Producer-Sim.js"></script>
+<script src="../static/Consumer-Sim.js"></script>
 </html>

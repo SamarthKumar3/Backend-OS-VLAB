@@ -1,4 +1,4 @@
-let slideIndex = 0; // current slide index
+let slideIndex = 0; 
 const slides = document.getElementsByClassName("carousel-image");
 const dots = document.getElementsByClassName("dot");
 
@@ -14,7 +14,7 @@ function showSlides() {
         dots[i].className = dots[i].className.replace(" active", "");
     }
     dots[slideIndex - 1].className += " active";
-    setTimeout(showSlides, 5000); // Change image every 2 seconds
+    setTimeout(showSlides, 8000); 
 }
 
 function currentSlide(n) {
@@ -22,12 +22,10 @@ function currentSlide(n) {
     showSlides();
 }
 
-// Attaching event listeners to dots
 for (let i = 0; i < dots.length; i++) {
     dots[i].addEventListener('click', function () {
         currentSlide(i + 1);
     });
 }
 
-// Initial call
 showSlides();

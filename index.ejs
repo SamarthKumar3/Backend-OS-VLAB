@@ -24,32 +24,13 @@
         <%- include('./components/Carousel.ejs') -%>
             <div class="section-1">
                 <div class="hero-choice">
-                    <button class="button-index">About the department</button>
-                    <button class="button-index">Vision and Mission</button>
+                    <button class="button-index" id="abt-dept">About the department</button>
+                    <button class="button-index" id="vsn-msn">Vision and Mission</button>
                 </div>
                 <div class="underline"></div>
-                <!-- <h2>About Our Virtual Lab</h2>
-                    <p>Good lab facilities and updated lab experiments are critical for any engineering college. Paucity of lab
-                            facilities often make it difficult to conduct experiments. Also, good teachers are always a scarce resource.
-                            The Virtual Labs project addresses this issue of lack of good lab facilities, as well as trained teachers,
-                            by providing remote-access to simulation-based Labs in various disciplines of science and engineering. Yet
-                            another objective is to arouse the curiosity of the students and permit them to learn at their own pace.
-                            This student-centric approach facilitates the absorption of basic and advanced concepts through
-                            simulation-based experimentation. Internet-based experimentation further permits use of additional
-                            web-resources, video-lectures, animated demonstrations and self-evaluation. Specifically, the Virtual Labs
-                            project addresses the following: </p>
-                    <div class="bullet">
-                        <ul>
-                            <li>Access to online labs to those engineering colleges that lack these lab facilities</li>
-                            <li>Access to online labs as a complementary facility to those colleges that already have labs</li>
-                            <li>Training and skill-set augmentation through workshops and on-site/ online training</li>
-                        </ul>
-                    </div>
-                    <p>Virtual labs are any place, any pace, any-time, any-type labs. It is a paradigm shift in student-centric,
-                        online education.</p> -->
                 <div class="hero-content">
                     <p>The Department of Computational Intelligence is an educational milieu that creates a foreground
-                        for students to acquire knowledge in the futuristic areas of  Artificial Intelligence, Machine
+                        for students to acquire knowledge in the futuristic areas of Artificial Intelligence, Machine
                         Learning and Software Engineering. We strive to create students ready for the industry with the
                         ability to develop and sustain space-age systems.
                         The curriculum’s prime focus is to endorse learning through the key concepts of acquire,
@@ -59,6 +40,30 @@
                         With no lid to cap your creative genius, the Department of Computational Intelligence brings you
                         forth all the means to implement and take advantage of a wide variety of emerging cutting-edge
                         technologies in software systems or simply be the mastermind behind it all.</p>
+                </div>
+                <div class="hero-content">
+                    <div>
+                        <h2>Vision:</h2>
+                        <p>To build a world-renowned academic platform in Computational Intelligence by providing unique
+                            learning and research experiences in collaboration with industries and world-class
+                            universities.
+                        </p>
+                    </div>
+                    <div>
+                        <h2>Mission:</h2>
+                        <p>To envision in creating, acquiring, and disseminating engineering knowledge on computational
+                            intelligence to elevate a student into a professional by imparting knowledge on mathematics,
+                            computing sciences, artificial intelligence, and software engineering along with the skills
+                            of cognitive computing.
+                            To offer a unique learning environment through world class faculty, curriculum, modernized
+                            lab facilities, and an interactive classroom environment with real-time experience from
+                            industrial experts that leads to a computing career in the latest technologies.
+                            To uplift the innovative research and development in computational intelligence and its
+                            allied fields by collaborating with renowned academic institutions and industries.
+                            To produce graduates who are global innovators and leaders in the development of
+                            computational intelligence-based systems, along with the commitment to ethical
+                            responsibilities and lifelong learning.</p>
+                    </div>
                 </div>
                 <div class="underline"></div>
                 <h1 class="welcome-heading">Welcome Message</h1>
@@ -98,4 +103,26 @@
             </div>
             </div>
             <%- include('./components/Footer.ejs', { sticky: false }) -%>
+
+                <script>
+                    const abtDept = document.getElementById('abt-dept');
+                    const vsnMsn = document.getElementById('vsn-msn');
+                    const heroContent = document.querySelectorAll('.hero-content');
+
+                    heroContent[0].style.display = 'block';
+                    heroContent[1].style.display = 'none';
+                    abtDept.focus();
+
+                    abtDept.addEventListener('click', () => {
+                        heroContent[0].style.display = 'block';
+                        heroContent[1].style.display = 'none';
+                    });
+
+                    vsnMsn.addEventListener('click', () => {
+                        heroContent[0].style.display = 'none';
+                        heroContent[1].style.display = 'block';
+                    });
+
+
+                </script>
 </body>
